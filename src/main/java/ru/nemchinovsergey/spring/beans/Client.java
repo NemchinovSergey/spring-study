@@ -1,10 +1,11 @@
+package ru.nemchinovsergey.spring.beans;
+
 /**
  * Created by Sergey on 23.03.2017.
  */
 public class Client {
     private String id;
     private String fullName;
-
 
     public Client(String id, String fullName) {
         this.id = id;
@@ -15,7 +16,15 @@ public class Client {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getFullName() {
         return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }
