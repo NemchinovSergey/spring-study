@@ -5,6 +5,7 @@ import ru.nemchinovsergey.spring.beans.Event;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 /**
  * Created by nemchinov on 23.03.2017.
@@ -15,11 +16,11 @@ public class FileEventLogger implements EventLogger {
 
     public FileEventLogger(String fileName) {
         this.fileName = fileName;
+        file = new File(fileName);
     }
 
     private void init() throws IOException
     {
-        file = new File(fileName);
         if (file.exists() && !file.canWrite())
         {
             throw new IllegalArgumentException("Can't write to file " + fileName);
@@ -41,7 +42,7 @@ public class FileEventLogger implements EventLogger {
     {
         try
         {
-            FileUtils.writeStringToFile(file, event.toString() + "\n", true);
+            FileUtils.writeStringToFile(file, event.toString() + "\n", Charset.forName("UTF-8"), true);
         } catch (IOException e) {
             e.printStackTrace();
         }
