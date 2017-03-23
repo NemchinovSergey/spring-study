@@ -3,19 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- создаём бин через конструктор по-умолчанию, самый простой вариант -->
-    <bean id="consoleEventLogger" class="ru.nemchinovsergey.spring.loggers.ConsoleEventLogger"/>
-
-    <!-- создаём бин через конструктор, вызываем init-method -->
-    <bean id="fileEventLogger" class="ru.nemchinovsergey.spring.loggers.FileEventLogger" init-method="init">
-        <constructor-arg value="target/fileEventLogger.log"/>
-    </bean>
-
-    <!-- вызов destroy-method (вызывается при завершении приложения, при закрытии контейнера контекста -->
-    <bean id="cacheFileEventLogger" class="ru.nemchinovsergey.spring.loggers.CacheFileEventLogger" init-method="init" destroy-method="destroy">
-        <constructor-arg index="0" value="target/cacheFileEventLogger.log"/>
-        <constructor-arg index="1" value="10"/>
-    </bean>
+    <import resource="loggers.xml"/>
 
     <!-- создаём бин используя передачу параметров в конструктор (с указанием индекса параметра и без) -->
     <bean id="client" class="ru.nemchinovsergey.spring.beans.Client">

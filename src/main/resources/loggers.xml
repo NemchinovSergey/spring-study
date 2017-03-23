@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- создаём бин через конструктор по-умолчанию, самый простой вариант -->
+    <bean id="consoleEventLogger" class="ru.nemchinovsergey.spring.loggers.ConsoleEventLogger"/>
+
+    <!-- создаём бин через конструктор, вызываем init-method -->
+    <bean id="fileEventLogger" class="ru.nemchinovsergey.spring.loggers.FileEventLogger" init-method="init">
+        <constructor-arg value="target/fileEventLogger.log"/>
+    </bean>
+
+    <!-- вызов destroy-method (вызывается при завершении приложения, при закрытии контейнера контекста -->
+    <!-- определяем родительский класс fileEventLogger -->
+    <bean id="cacheFileEventLogger" class="ru.nemchinovsergey.spring.loggers.CacheFileEventLogger" destroy-method="destroy" parent="fileEventLogger">
+        <constructor-arg index="1" value="10"/>
+    </bean>
+
+</beans>
