@@ -1,6 +1,7 @@
 package ru.nemchinovsergey.spring;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.nemchinovsergey.spring.beans.Client;
 import ru.nemchinovsergey.spring.beans.Event;
@@ -28,16 +29,21 @@ public class App {
     }
 
     public static void main(String[] args) {
-        //@SuppressWarnings("resource") // We will remove this suppress in further lessons
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        @SuppressWarnings("resource") // We will remove this suppress in further lessons
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        // to automatic close context
+        ctx.registerShutdownHook();
 
         App app = (App) ctx.getBean("app");
 
-        Event event = ctx.getBean(Event.class);
-        app.logEvent(event, "Some event for user 1");
+        for (int i = 0; i < 15; i++) {
+            Event event = ctx.getBean(Event.class);
+            app.logEvent(event, String.format("Some event for user %d", i));
+        }
 
-        event = ctx.getBean(Event.class);
-        app.logEvent(event, "Some event for user 2");
+        Event event = ctx.getBean(Event.class);
+        app.logEvent(event, "The last event before application closing");
+
     }
 
 
