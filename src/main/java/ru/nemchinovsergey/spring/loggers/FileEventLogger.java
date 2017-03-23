@@ -16,11 +16,11 @@ public class FileEventLogger implements EventLogger {
 
     public FileEventLogger(String fileName) {
         this.fileName = fileName;
-        file = new File(fileName);
     }
 
     private void init() throws IOException
     {
+        file = new File(fileName);
         if (file.exists() && !file.canWrite())
         {
             throw new IllegalArgumentException("Can't write to file " + fileName);

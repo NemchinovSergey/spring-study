@@ -1,14 +1,10 @@
 package ru.nemchinovsergey.spring;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.nemchinovsergey.spring.beans.Client;
 import ru.nemchinovsergey.spring.beans.Event;
 import ru.nemchinovsergey.spring.loggers.EventLogger;
-
-import java.text.DateFormat;
-import java.util.Date;
 
 /**
  * Created by Sergey on 23.03.2017.

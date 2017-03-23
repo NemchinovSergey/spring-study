@@ -8,12 +8,12 @@
 
     <!-- создаём бин через конструктор, вызываем init-method -->
     <bean id="fileEventLogger" class="ru.nemchinovsergey.spring.loggers.FileEventLogger" init-method="init">
-        <constructor-arg value="fileEventLogger.log"/>
+        <constructor-arg value="target/fileEventLogger.log"/>
     </bean>
 
     <!-- вызов destroy-method (вызывается при завершении приложения, при закрытии контейнера контекста -->
     <bean id="cacheFileEventLogger" class="ru.nemchinovsergey.spring.loggers.CacheFileEventLogger" init-method="init" destroy-method="destroy">
-        <constructor-arg index="0" value="cacheFileEventLogger.log"/>
+        <constructor-arg index="0" value="target/cacheFileEventLogger.log"/>
         <constructor-arg index="1" value="10"/>
     </bean>
 
