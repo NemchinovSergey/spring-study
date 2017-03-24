@@ -54,5 +54,6 @@
     <!-- создаём бин с форматом даты -->
     <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
 
+    <bean id="monitor" class="ru.nemchinovsergey.spring.util.Monitor"/>
 
 </beans>

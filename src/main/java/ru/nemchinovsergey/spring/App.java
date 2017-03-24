@@ -41,7 +41,7 @@ public class App {
         App app = (App) ctx.getBean("app");
 
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 5; i++) {
             Event event = ctx.getBean(Event.class);
             EventType eventType = (Math.random() * 2) > 1 ? EventType.INFO : EventType.ERROR;
             app.logEvent(eventType, event, String.format("Some event for user %d", i));
