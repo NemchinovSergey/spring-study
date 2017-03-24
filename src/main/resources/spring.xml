@@ -55,5 +55,6 @@
     <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
 
     <bean id="monitor" class="ru.nemchinovsergey.spring.util.Monitor"/>
+    <bean id="awared" class="ru.nemchinovsergey.spring.util.AwareBean" init-method="init"/>
 
 </beans>
