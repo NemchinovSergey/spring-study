@@ -1,18 +1,34 @@
 package ru.nemchinovsergey.spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Service;
 import ru.nemchinovsergey.spring.beans.Client;
 import ru.nemchinovsergey.spring.beans.Event;
 import ru.nemchinovsergey.spring.beans.EventType;
 import ru.nemchinovsergey.spring.loggers.EventLogger;
+import ru.nemchinovsergey.spring.spring.AppConfig;
+import ru.nemchinovsergey.spring.spring.LoggerConfig;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
+@Service
 public class App {
+
+    @Autowired
     private Client client;
+
+    @Resource(name = "defaultLogger")
     private EventLogger defaultLogger;
+
+    @Resource(name = "loggerMap")
     private Map<EventType, EventLogger> loggers;
+
+    public App() {
+    }
 
     public App(Client client, EventLogger eventLogger, Map<EventType, EventLogger> loggers) {
         this.client = client;
@@ -33,10 +49,10 @@ public class App {
     }
 
     public static void main(String[] args) {
-        @SuppressWarnings("resource") // We will remove this suppress in further lessons
-        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-        // to automatic close context
-        ctx.registerShutdownHook();
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+        ctx.register(AppConfig.class, LoggerConfig.class);
+        ctx.scan("ru.nemchinovsergey.spring");
+        ctx.refresh();
 
         App app = (App) ctx.getBean("app");
 

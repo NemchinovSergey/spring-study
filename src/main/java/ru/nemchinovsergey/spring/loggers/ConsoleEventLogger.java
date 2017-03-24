@@ -1,10 +1,9 @@
 package ru.nemchinovsergey.spring.loggers;
 
+import org.springframework.stereotype.Component;
 import ru.nemchinovsergey.spring.beans.Event;
 
-/**
- * Created by Sergey on 23.03.2017.
- */
+@Component
 public class ConsoleEventLogger implements EventLogger
 {
     public void logEvent(Event event)
