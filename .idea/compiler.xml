@@ -9,8 +9,8 @@
         <module name="spring-study" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="spring-study" target="1.5" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="spring-study" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
