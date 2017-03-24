@@ -13,8 +13,18 @@
 
     <!-- вызов destroy-method (вызывается при завершении приложения, при закрытии контейнера контекста -->
     <!-- определяем родительский класс fileEventLogger -->
-    <bean id="cacheFileEventLogger" class="ru.nemchinovsergey.spring.loggers.CacheFileEventLogger" destroy-method="destroy" parent="fileEventLogger">
+    <bean id="cacheFileEventLogger" class="ru.nemchinovsergey.spring.loggers.CacheFileEventLogger"
+          destroy-method="destroy" parent="fileEventLogger">
         <constructor-arg index="1" value="10"/>
+    </bean>
+
+    <bean id="combinedEventLogger" class="ru.nemchinovsergey.spring.loggers.CombinedEventLogger">
+        <constructor-arg>
+            <list>
+                <ref bean="consoleEventLogger"/>
+                <ref bean="fileEventLogger"/>
+            </list>
+        </constructor-arg>
     </bean>
 
 </beans>

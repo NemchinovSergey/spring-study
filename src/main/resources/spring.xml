@@ -9,12 +9,19 @@
     <bean id="client" class="ru.nemchinovsergey.spring.beans.Client">
         <constructor-arg index="0" value="1"/>
         <constructor-arg value="John Smith"/>
+        <property name="greeting" value="Hello there!"/>
     </bean>
 
     <!-- создаём бин используя передачу ссылок в конструктор уже созданных объектов -->
     <bean id="app" class="ru.nemchinovsergey.spring.App">
         <constructor-arg ref="client"/>
         <constructor-arg ref="cacheFileEventLogger"/>
+        <constructor-arg>
+            <map>
+                <entry key="INFO" value-ref="consoleEventLogger"/>
+                <entry key="ERROR" value-ref="combinedEventLogger"/>
+            </map>
+        </constructor-arg>
     </bean>
 
     <!-- создаём бин используя внутренний бит, для получения даты -->
